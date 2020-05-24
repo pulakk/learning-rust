@@ -28,3 +28,9 @@ Important command: `cargo doc --open`
 * Rust does *automatic referencing and dereferencing*. It doesn't have an equivalent `->` operator. When we call a method with `object.something()`, Rust automatically adds in `&`, `&mut`, or `*` so object matches the signature of the method. In other words, `p1.distance(&p2);` and `(&p1).distance(&p2);` are the same.
 * `::` syntax is used for both `associated functions` and `namespaces` created by modules
 * `impl` can be used to implement `methods` or namespaced `associated functions` for structs
+
+## 6 - Enum and Match
+* `enum` can be used to enumerate as well as store different forms of data in each enumeration `variant`
+* `Option<T>` enum is helpful to handle `None` values and its shortcomings, it has two `variant`s: `Some(T)` and `None`
+* `match` or `if let` help handle different scenarios for different `variant`s of an `enum`
+* the `_` placeholder implies `else` in a `match`
