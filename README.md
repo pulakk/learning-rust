@@ -22,3 +22,9 @@ Important command: `cargo doc --open`
 * Ownership means the `Power to destroy (Drop)`
 * Ownership is important only for types stored in `heap` because `stack` doesn't have the issue of allocation and deallocation of memory in runtime
 * A variable can have only one owner at a time
+
+## 5 - Structs
+* `()` is the `unit` type, it's single zero-sized value
+* Rust does *automatic referencing and dereferencing*. It doesn't have an equivalent `->` operator. When we call a method with `object.something()`, Rust automatically adds in `&`, `&mut`, or `*` so object matches the signature of the method. In other words, `p1.distance(&p2);` and `(&p1).distance(&p2);` are the same.
+* `::` syntax is used for both `associated functions` and `namespaces` created by modules
+* `impl` can be used to implement `methods` or namespaced `associated functions` for structs
