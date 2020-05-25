@@ -34,3 +34,10 @@ Important command: `cargo doc --open`
 * `Option<T>` enum is helpful to handle `None` values and its shortcomings, it has two `variant`s: `Some(T)` and `None`
 * `match` or `if let` help handle different scenarios for different `variant`s of an `enum`
 * the `_` placeholder implies `else` in a `match`
+
+## 7 - Packages, Crates and Modules
+* `idiomatic` `use` should be preferred, e.g. `use std::io;` and then `io::Result` preferred over `use std::io::Result` as the latter might lead to conflicting names
+* Bringing structs, enums etc with use is `idiomatic` because they are already namespaced, e.g. `use std::collections::HashMap;` and then `HashMap::new()`
+* `as` can be used for aliasing imports, e.g. `use std::io::Result as IoResult`
+* use nested paths for inline imports of crates `use std::{cmp::Ordering, io};` or `use std::io:{self, Write};`
+* Glob operator is sometimes helpful `std::collections::*;`
