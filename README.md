@@ -58,7 +58,7 @@ Important command: `cargo doc --open`
     * will move values for Heap datatypes like String
 
 ## 9 - Error handling
-* Use specify abort mode in `Cargo.toml` file, if you want to immediately abort on error without `unwinding` i.e. cleaning up the program (leave cleanup to the OS). This leads to the resulting binary being smaller.
+* Specify abort mode in `Cargo.toml` file, if you want to immediately abort on error without `unwinding` i.e. cleaning up the program (leave cleanup to the OS). This leads to the resulting binary being smaller.
     ```rust
     [profile.release]
     panic = 'abort'
@@ -77,7 +77,7 @@ Important command: `cargo doc --open`
         Ok(())
     }
     ```
-* To `panic!`? or not to `panic!`?:
-    * When the error is such that it is in a bad state or broken and it is not safe to continue the program, calling panic! is better. E.g. out of bounds memory access. There is no reasonable way to `recover` from these errors. It almost always indicate a caller-side bug and it's the kind of errors you don't want the calling code to have to explicitly handle.
-    * Otherwise, if when errors are inherently expected in the function, returning a `Result` is a good default choice. E.g. HTTP Errors, Parsing JSON.
+* To `panic!`? or not to `panic!`?
+    * When the error is such that it is in a bad state or broken and it is not safe to continue the program, calling `panic!` is better. E.g. out of bounds memory access. There is no reasonable way to `recover` from these errors. It almost always indicates a caller-side bug and it's the kind of error you don't want the calling code to have to explicitly handle.
+    * If when errors are inherently expected in the function, returning a `Result` is a good default choice. E.g. HTTP Errors, Parsing JSON.
 * Rust's type system already provides a good error handling mechanism. E.g. you don't have to worry about null values, if you specify a variable to be a type rather than an `Option`.
