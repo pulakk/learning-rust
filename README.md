@@ -41,3 +41,18 @@ Important command: `cargo doc --open`
 * `as` can be used for aliasing imports, e.g. `use std::io::Result as IoResult`
 * use nested paths for inline imports of crates `use std::{cmp::Ordering, io};` or `use std::io:{self, Write};`
 * Glob operator is sometimes helpful `std::collections::*;`
+
+## 8 - Common collections
+* `Vec`:
+    * Multiple data-types can be used in vectors by using an `enum` that has different data type variants
+* `String`:
+    * Indexing on `String` is not allowed in Rust. We have to take slices.
+    *  The slice we take cannot be partial. E.g. `नमस्ते` is of 18 bytes, with 6 characters `न, म, स, ्, त, े, `, so `&word[0..1]` is not allowed as it is just the first byte of the 3 byte character `न`. We can get `न` instead, using `&word[0..3]`. 
+    * Different strings may take different bytes per character. `Hola` is of 4 bytes and each character takes up only a single byte.
+    * Use `s.split_whitespace()` to iterate over words in a sentence and use `s.chars()` to iterate over every character.
+* `HashMap`:
+    * Bring into scope using `use std::collections::HashMap;`
+    * Create using `HashMap::new()`
+    * insert and update using `map.insert(10, 20)`
+    * set default value for new key `map.entry(String::from("key")).or_insert(String::from("value"))`, returns a mutable reference which can be used to update if entry already exists or a new one is created
+    * will move values for Heap datatypes like String
