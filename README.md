@@ -56,3 +56,28 @@ Important command: `cargo doc --open`
     * insert and update using `map.insert(10, 20)`
     * set default value for new key `map.entry(String::from("key")).or_insert(String::from("value"))`, returns a mutable reference which can be used to update if entry already exists or a new one is created
     * will move values for Heap datatypes like String
+
+## 9 - Error handling
+* Use specify abort mode in `Cargo.toml` file, if you want to immediately abort on error without `unwinding` i.e. cleaning up the program (leave cleanup to the OS). This leads to the resulting binary being smaller.
+    ```rust
+    [profile.release]
+    panic = 'abort'
+    ```
+* Use `RUST_BACKTRACE=1 cargo run` for backtracing an error.
+* Use `unwrap()`, `unwrap_or_else()`, `expect()` methods for concise error handling.
+* Use `somefn()?` to return `Result::Err` if `somefn()` returns `Result::Err` or continue if `somefn()` returns `Result::Ok`.
+* The `main` function supports `Result<T, E>` return type. Hence, we can use `?` operator in the `main` function as well.
+    ```rust
+    use std::error::Error;
+    use std::fs::File;
+
+    fn main() -> Result<(), Box<dyn Error>> {
+        let f = File::open("hello.txt")?;
+
+        Ok(())
+    }
+    ```
+* To `panic!`? or not to `panic!`?:
+    * When the error is such that it is in a bad state or broken and it is not safe to continue the program, calling panic! is better. E.g. out of bounds memory access. There is no reasonable way to `recover` from these errors. It almost always indicate a caller-side bug and it's the kind of errors you don't want the calling code to have to explicitly handle.
+    * Otherwise, if when errors are inherently expected in the function, returning a `Result` is a good default choice. E.g. HTTP Errors, Parsing JSON.
+* Rust's type system already provides a good error handling mechanism. E.g. you don't have to worry about null values, if you specify a variable to be a type rather than an `Option`.
