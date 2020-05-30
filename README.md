@@ -81,3 +81,21 @@ Important command: `cargo doc --open`
     * When the error is such that it is in a bad state or broken and it is not safe to continue the program, calling `panic!` is better. E.g. out of bounds memory access. There is no reasonable way to `recover` from these errors. It almost always indicates a caller-side bug and it's the kind of error you don't want the calling code to have to explicitly handle.
     * If when errors are inherently expected in the function, returning a `Result` is a good default choice. E.g. HTTP Errors, Parsing JSON.
 * Rust's type system already provides a good error handling mechanism. E.g. you don't have to worry about null values, if you specify a variable to be a type rather than an `Option`.
+
+## 10 - Generics, Traits and Lifetimes
+* We cannot implement external traits on external types
+* To enforce exactly same type on trait bounds, use `pub fn notify<T: Summary>(item1: T, item2: T) ..`
+* Multiple trait bounds: `pub fn notify<T: Summary + Display>(item: T)` or `pub fn notify(item: impl Summary + Display)`
+* Using `where` clause for trait bounds:
+    ```rust
+    fn some_function<T: Display + Clone, U: Clone + Debug>(t: T, u: U)
+    ```
+    is same as
+    ```rust
+    fn some_function<T, U>(t: T, u: U) -> i32
+        where T: Display + Clone,
+            U: Clone + Debug
+    {
+    ```
+* Use `fn returns_summarizable() -> impl Summary {` for concisely specifying return types, but the `fn` cannot return multiple different types using this syntax.
+* Implementations of a trait on any type that satisfies the trait bounds are called `blanket implementations`. Check `Implementors` section for the trait in Rust Documentation.
