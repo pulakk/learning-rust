@@ -99,3 +99,24 @@ Important command: `cargo doc --open`
     ```
 * Use `fn returns_summarizable() -> impl Summary {` for concisely specifying return types, but the `fn` cannot return multiple different types using this syntax.
 * Implementations of a trait on any type that satisfies the trait bounds are called `blanket implementations`. Check `Implementors` section for the trait in Rust Documentation.
+* `'static` is a special lifetime because it means the reference can live for the entire duration of the program. All string literals have `'static` lifetime.
+* Complete example:
+    ```rust
+    use std::fmt::Display;
+
+    fn longest_with_an_announcement<'a, T>(
+        x: &'a str,
+        y: &'a str,
+        ann: T,
+    ) -> &'a str
+    where
+        T: Display,
+    {
+        println!("Announcement! {}", ann);
+        if x.len() > y.len() {
+            x
+        } else {
+            y
+        }
+    }
+    ```
