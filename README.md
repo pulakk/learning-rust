@@ -120,3 +120,10 @@ Important command: `cargo doc --open`
         }
     }
     ```
+
+## 11 - Automated Tests
+* By default, all tests run in parallel. To run sequentially, use `cargo test -- --test-threads=1`
+* Use `cargo test -- --show-output` for showing display printed values even on test which pass.
+* Use `cargo test my_test` to run tests with names which are a superstring of `my_test`
+* Use `#[ignore]` attribute on the test functions you want to ignore. To run only ignored tests, use `cargo test -- --ignored`.
+* Each file in `tests` directory is run as a separate binary crate for integration tests. If we want to specify a common helper module for integration tests which doesn't need to be run as a distinct crate, we can use the following naming convention `tests/common/mod.rs` so that the module `common` doesn't get compiled as a separate crate.
