@@ -140,3 +140,18 @@ Important command: `cargo doc --open`
 * All closures implement `FnOnce` because they can all be called at least once. Closures that don’t move the captured variables also implement `FnMut`, and closures that don’t need mutable access to the captured variables also implement `Fn`
 * Closures can capture values from their environment in three ways: `taking ownership`, `borrowing mutably`, and `borrowing immutably`. For taking ownership, use the `move` keyword.
 * `v.iter().sum()` consumes the iterator
+
+## 14 - More about cargo and crates.io
+
+Skipping currently ...
+
+## 15 - Smart Pointers
+* References (`&`) are pointers that only borrow data; in contrast, in many cases, smart pointers own the data they point to.
+Skipping currently ...
+
+## 16 - Fearless Concurrency
+* Two common ways of handling concurrency: message passing through `channels` and shared state concurrency using `mutex`
+* Management of mutexes can be incredibly tricky to get right, which is why so many people are enthusiastic about channels. However, thanks to Rust’s type system and ownership rules, you can’t get locking and unlocking wrong.
+* Two concurrency concepts are embedded in the language: the `std::marker` traits `Sync` and `Send`
+* The `Send` marker trait indicates that ownership of the type implementing `Send` can be transferred between threads. Almost every Rust type is `Send`, but there are some exceptions, including `Rc<T>`.
+* The `Sync` marker trait indicates that it is safe for the type implementing `Sync` to be referenced from multiple threads. In other words, any type T is `Sync` if `&T` (a reference to T) is `Send`, meaning the reference can be sent safely to another thread.
