@@ -135,3 +135,8 @@ Important command: `cargo doc --open`
 * Use `std::env::var("CASE_SENSITIVE").is_ok()` for checking if specific environment variables are present
 * `std::env::args().collect()` returns a `Vec<String>` with the arguments provided to the script
 * Some helpful methods: `line.contains(word)`, `word.to_lowercase()`, `content.lines()`
+
+## 13 - Functional Language Features
+* All closures implement `FnOnce` because they can all be called at least once. Closures that don’t move the captured variables also implement `FnMut`, and closures that don’t need mutable access to the captured variables also implement `Fn`
+* Closures can capture values from their environment in three ways: `taking ownership`, `borrowing mutably`, and `borrowing immutably`. For taking ownership, use the `move` keyword.
+* `v.iter().sum()` consumes the iterator
