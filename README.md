@@ -125,5 +125,13 @@ Important command: `cargo doc --open`
 * By default, all tests run in parallel. To run sequentially, use `cargo test -- --test-threads=1`
 * Use `cargo test -- --show-output` for showing display printed values even on test which pass.
 * Use `cargo test my_test` to run tests with names which are a superstring of `my_test`
+* Use `#[cfg(test)]` to declare a test module, and `#[test]` attribute to write a test fn
 * Use `#[ignore]` attribute on the test functions you want to ignore. To run only ignored tests, use `cargo test -- --ignored`.
 * Each file in `tests` directory is run as a separate binary crate for integration tests. If we want to specify a common helper module for integration tests which doesn't need to be run as a distinct crate, we can use the following naming convention `tests/common/mod.rs` so that the module `common` doesn't get compiled as a separate crate.
+
+## 12 - I/O Project - Recap of concepts
+* Use the `eprintln!` macro instead of the `println!` macro, for printing to `stderr` instead of `stdout`
+* Use `std::process::exit(0)` for exiting process
+* Use `std::env::var("CASE_SENSITIVE").is_ok()` for checking if specific environment variables are present
+* `std::env::args().collect()` returns a `Vec<String>` with the arguments provided to the script
+* Some helpful methods: `line.contains(word)`, `word.to_lowercase()`, `content.lines()`
