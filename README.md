@@ -147,7 +147,7 @@ Skipping currently ...
 
 ## 15 - Smart Pointers
 * References (`&`) are pointers that only borrow data; in contrast, in many cases, smart pointers own the data they point to.
-Skipping currently ...
+* smart pointers implement the `Deref` and `Drop` traits. The `Deref` trait allows an instance of the smart pointer struct to behave like a reference so you can write code that works with either references or smart pointers. The `Drop` trait allows you to customize the code that is run when an instance of the smart pointer goes out of scope.
 
 ## 16 - Fearless Concurrency
 * Two common ways of handling concurrency: message passing through `channels` and shared state concurrency using `mutex`
